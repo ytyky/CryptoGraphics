@@ -24,11 +24,11 @@ USDT <- read.csv("data/USDT-USD.csv")
 ```{r}
 df.close<-data.frame(cbind(BTC[,1],BTC[,6],BNB[,6],ETH[,6],USDC[,6],USDT[,6]))
 colnames(df.close)<-c("Date","BTC","BNB","ETH","USDC","USDT")
-df.close
+head(df.close)
 ```
 ```{r}
 df.close1<- gather(df.close[,2:6], cryptocurrency, price)
 df.close1$price<-as.numeric(df.close1$price)
-df.close1
+head(df.close1)
 ```
 
