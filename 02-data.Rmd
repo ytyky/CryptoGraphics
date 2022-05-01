@@ -28,9 +28,7 @@ df.close
 df.close1<- gather(df.close[,2:6], cryptocurrency, price)
 df.close1$price<-as.numeric(df.close1$price)
 df.close1
-ggplot(df.close1, aes(cryptocurrency, price)) + 
-  geom_boxplot() + coord_flip() +
-  theme_grey(16)
+
 ```
 
 
