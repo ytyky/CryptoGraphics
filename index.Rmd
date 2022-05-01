@@ -1,9 +1,16 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAMES HERE"
+title: "Crypto Graphics"
+author: "Tianyu Yao, Juntian Zhang"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
 # Introduction
 
+Cryptocurrency market is trending and we are interested in comparing and contrasting different types of cryptocurrencies, providing insights in the field. After exploring multiple websites that provide crypto market data, we developed a few questions that are hard to answer directly through any single sources: 
+
+1.The correlation between major cryptocurrencies, are they moved upward or downward together? 
+
+2.how “hot” is a cryptocurrency, by trading frequency, volume, etc 
+
+3.how big the crypto market is, i.e, market cap of major cryptocurrencies, compare with each other and figure out the relationships between volatility and the market cap.
