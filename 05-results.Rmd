@@ -1,1 +1,8 @@
 # Results
+```{r}
+ggplot(df.close1, aes(price)) + 
+  geom_boxplot() + coord_flip() + 
+  facet_wrap(~cryptocurrency,scales = "free")+
+  theme_grey(16)
+```
+
