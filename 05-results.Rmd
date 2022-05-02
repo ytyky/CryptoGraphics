@@ -6,3 +6,8 @@ ggplot(df.close1, aes(price)) +
   theme_grey(16)
 ```
 
+```{r}
+## plot matrix for price
+plot(df.close[,2:6],pch=20, cex=0.1)
+```
+
