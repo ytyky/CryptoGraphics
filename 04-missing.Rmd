@@ -1,1 +1,12 @@
 # Missing values
+
+```{r}
+library(redav)
+```
+
+```{r}
+plot_missing(df.close)
+```
+
+Observed that there is no missing value.
+

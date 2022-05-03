@@ -23,7 +23,7 @@
 <meta name="author" content="Tianyu Yao, Juntian Zhang" />
 
 
-<meta name="date" content="2022-05-01" />
+<meta name="date" content="2022-05-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -73,7 +73,17 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#contribution"><i class="fa fa-check"></i><b>2.1</b> COntribution</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#data-collection"><i class="fa fa-check"></i><b>2.2</b> Data Collection</a></li>
+<li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#dataset-information"><i class="fa fa-check"></i><b>2.3</b> Dataset Information</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="data-sources.html"><a href="data-sources.html#format"><i class="fa fa-check"></i><b>2.3.1</b> Format</a></li>
+<li class="chapter" data-level="2.3.2" data-path="data-sources.html"><a href="data-sources.html#column-details"><i class="fa fa-check"></i><b>2.3.2</b> Column Details</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-sources.html"><a href="data-sources.html#issue"><i class="fa fa-check"></i><b>2.4</b> Issue</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
@@ -100,9 +110,65 @@
             <section class="normal" id="section-">
 <div id="data-sources" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Data sources<a href="data-sources.html#data-sources" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>We use <a href="https://coinmarketcap.com">coinmarketcap</a> to verified top 5 cryptocurrencies by market cap, and then pulled each cryptocurrency dataset from yahoo finance, including 1 year long trading information (2021 May - 2022 May).</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div id="contribution" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> COntribution<a href="data-sources.html#contribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tianyu is responsible to determine the cryptocurencies we are focus on. Juntian downloads corresponding cryptocurrencies’ datasets and determines the scale of the data.</p>
+</div>
+<div id="data-collection" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Data Collection<a href="data-sources.html#data-collection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We use <a href="https://coinmarketcap.com">coinmarketcap</a> api to verified top 5 cryptocurrencies by market cap, and then pulled each cryptocurrency dataset from yahoo finance, including 1 year long trading information (2021 May - 2022 May).</p>
+<p>We then explore multiple financial sources and yahoo finance is the most tangible and flexible website to download dataset we desired. It not only offers detailed information about the crypto we are interested in, but also provides options to download dataset with self-define time frame.</p>
+</div>
+<div id="dataset-information" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Dataset Information<a href="data-sources.html#dataset-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We downloaded 5 datasets and each corresponding to one of the major cryptocurrencies we observed above. Each dataset include 366 rows and 7 columns.</p>
+<div id="format" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Format<a href="data-sources.html#format" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The format of each dataset:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Date</th>
+<th align="center">Open</th>
+<th align="center">High</th>
+<th align="center">Low</th>
+<th align="center">Close</th>
+<th align="center">Adj.Close</th>
+<th align="center">Volume</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">record</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="column-details" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Column Details<a href="data-sources.html#column-details" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Date: date of the crypto record</li>
+<li>Open: open price</li>
+<li>High: highest price</li>
+<li>Close: close price</li>
+<li>Adj.Close: close price after adjustment</li>
+<li>Volume: the number of shares traded</li>
+</ul>
+<p>(all price are in USD)</p>
+</div>
+</div>
+<div id="issue" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Issue<a href="data-sources.html#issue" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>As the histogram above shown, the market cap of Bitcoin is way bigger than any cryptocurrencies. This is a challenging problem because it would affect our comparison between cryptos.</p>
 
+</div>
 </div>
             </section>
 
