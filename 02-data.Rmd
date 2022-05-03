@@ -1,16 +1,17 @@
 # Data sources
 
-We use [coinmarketcap](https://coinmarketcap.com) to verified top 5 cryptocurrencies by market cap, and then pulled each cryptocurrency dataset from yahoo finance, including 1 year long trading information (2021 May - 2022 May).
+## COntribution
+
+Tianyu is responsible to determine the cryptocurencies we are focus on. Juntian downloads corresponding cryptocurrencies' datasets and determines the scale of the data.
+
+## Data Collection
+
+We use [coinmarketcap](https://coinmarketcap.com) api to verified top 5 cryptocurrencies by market cap, and then pulled each cryptocurrency dataset from yahoo finance, including 1 year long trading information (2021 May - 2022 May).
 
 ```{r}
 library(tidyverse)
 library(ggplot2)
 library(coinmarketcapr)
-```
-
-```{r}
-coinmarketcapr::setup('6a34456f-8a3c-46d5-b07f-6b84e364929c')
-plot_top_currencies(currency = "USD", k = 5, bar_color = "grey")
 ```
 
 ```{r}
@@ -21,14 +22,38 @@ USDC <- read.csv("data/USDC-USD.csv")
 USDT <- read.csv("data/USDT-USD.csv")
 ```
 
+We then explore multiple financial sources and yahoo finance is the most tangible and flexible website to download dataset we desired. It not only offers detailed information about the crypto we are interested in, but also provides options to download dataset with self-define time frame.
+
+## Dataset Information
+
+We downloaded 5 datasets and each corresponding to one of the major cryptocurrencies we observed above. Each dataset include 366 rows and 7 columns.
+
+### Format
+
+The format of each dataset:
+
+| Date | Open | High | Low | Close | Adj.Close | Volume |
+| :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+| record |
+
+### Column Details
+
+* Date: date of the crypto record
+* Open: open price
+* High: highest price
+* Close: close price
+* Adj.Close: close price after adjustment
+* Volume: the number of shares traded
+
+(all price are in USD)
+
+## Issue
+
 ```{r}
-df.close<-data.frame(cbind(BTC[,1],BTC[,6],BNB[,6],ETH[,6],USDC[,6],USDT[,6]))
-colnames(df.close)<-c("Date","BTC","BNB","ETH","USDC","USDT")
-head(df.close)
+coinmarketcapr::setup('6a34456f-8a3c-46d5-b07f-6b84e364929c')
+plot_top_currencies(currency = "USD", k = 5, bar_color = "grey")
 ```
-```{r}
-df.close1<- gather(df.close[,2:6], cryptocurrency, price)
-df.close1$price<-as.numeric(df.close1$price)
-head(df.close1)
-```
+
+As the histogram above shown, the market cap of Bitcoin is way bigger than any cryptocurrencies. This is a challenging problem because it would affect our comparison between cryptos.
+
 

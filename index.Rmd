@@ -11,6 +11,8 @@ Cryptocurrency market is trending and we are interested in comparing and contras
 
 1.The correlation between major cryptocurrencies, are they moved upward or downward together? 
 
-2.how “hot” is a cryptocurrency, by trading frequency, volume, etc 
+2.how to visualize “hotness” of a cryptocurrency?
 
-3.how big the crypto market is, i.e, market cap of major cryptocurrencies, compare with each other and figure out the relationships between volatility and the market cap.
+3.market cap of major cryptocurrencies, compare with each other and figure out the relationships between volatility and the market cap.
+
+
