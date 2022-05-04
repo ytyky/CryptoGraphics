@@ -6,7 +6,7 @@ Tianyu is responsible to determine the cryptocurencies we are focus on. Juntian 
 
 ## Data Collection
 
-We use [coinmarketcap](https://coinmarketcap.com) api to verified top 5 cryptocurrencies by market cap, and then pulled each cryptocurrency dataset from yahoo finance, including 1 year long trading information (2021 May - 2022 May).
+We use [coinmarketcap](https://coinmarketcap.com) api to verified top 5 cryptocurrencies by market cap, and then pulled each cryptocurrency dataset from [coingecko](https://www.coingecko.com), including historical trading information.
 
 ```{r}
 library(tidyverse)
@@ -26,26 +26,23 @@ We then explore multiple financial sources and yahoo finance is the most tangibl
 
 ## Dataset Information
 
-We downloaded 5 datasets and each corresponding to one of the major cryptocurrencies we observed above. Each dataset include 366 rows and 7 columns.
+We downloaded 5 datasets and each corresponding to one of the major cryptocurrencies we observed above. Each dataset include 7 columns and up to 3292 rows.
 
 ### Format
 
 The format of each dataset:
 
-| Date | Open | High | Low | Close | Adj.Close | Volume |
-| :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+| date | price | market_cap | total_volume |
+| :----: | :----: | :----: | :----: |
 | record |
 
 ### Column Details
 
-* Date: date of the crypto record
-* Open: open price
-* High: highest price
-* Close: close price
-* Adj.Close: close price after adjustment
-* Volume: the number of shares traded
+* date: date of the crypto record
+* price: trading price (USD)
+* market_cap: total market cap
+* total_volume: the number of shares traded
 
-(all price are in USD)
 
 ## Issue
 
