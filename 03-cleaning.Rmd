@@ -1,5 +1,9 @@
 # Data transformation
 
+## Select Data
+
+The original data includes the records which is more than one year, so we firstly choose the data between 2021-04-29 to 2022-04-30.
+
 ```{r}
 BTC<-BTC[(nrow(BTC)-370):(nrow(BTC)-4),]
 BNB<-BNB[(nrow(BNB)-370):(nrow(BNB)-4),]
@@ -8,17 +12,29 @@ USDC<-USDC[(nrow(USDC)-370):(nrow(USDC)-4),]
 USDT<-USDT[(nrow(USDT)-370):(nrow(USDT)-4),]
 ```
 
+## Combine the Data
+
+we will combine the price of each cryptocurrency into one table df.close
+
 ```{r}
 df.close<-data.frame(cbind(BTC[,1],BTC[,2],BNB[,2],ETH[,2],USDC[,2],USDT[,2]))
 colnames(df.close)<-c("Date","BTC","BNB","ETH","USDC","USDT")
 head(df.close)
 ```
 
+Here, we transform the table df.close into the new table df.close1 which will be helpful for plotting. 
+
 ```{r}
 df.close1<- gather(df.close[,2:6], cryptocurrency, price)
 df.close1$price<-as.numeric(df.close1$price)
 head(df.close1)
 ```
+
+## Calculate the Return and Volatility
+
+Firstly, we calculate the return of each date by the formula: (final price/ initial price)-1.  
+Then we calculate the 15 days volatility of each cryto by   calculating the stand deviation of 15 days return, and multiply square root of 356. (For stocks, the volatility is stand deviation multiply square root of 250, but the cryptocurrency can be traded every day, so we choose square root of 356 )
+
 ```{r}
 # volatility
 BTC$Return<-NA
@@ -96,6 +112,11 @@ for (i in 16:nrow(USDT)){
                    USDT$Return[i-2],USDT$Return[i-1],USDT$Return[i]))*sqrt(365)
 }
 ```
+
+## Combine All the Value into One table
+
+Finally, we combine the volatility, return, and market capitalization with the df.close1, creating the final table df.cryto
+
 ```{r}
 df.close1$Date<-rep(df.close$Date,5)
 df.cryto<-
