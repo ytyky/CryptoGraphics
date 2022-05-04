@@ -1,7 +1,15 @@
 # Data transformation
 
 ```{r}
-df.close<-data.frame(cbind(BTC[,1],BTC[,6],BNB[,6],ETH[,6],USDC[,6],USDT[,6]))
+BTC<-BTC[(nrow(BTC)-370):(nrow(BTC)-4),]
+BNB<-BNB[(nrow(BNB)-370):(nrow(BNB)-4),]
+ETH<-ETH[(nrow(ETH)-370):(nrow(ETH)-4),]
+USDC<-USDC[(nrow(USDC)-370):(nrow(USDC)-4),]
+USDT<-USDT[(nrow(USDT)-370):(nrow(USDT)-4),]
+```
+
+```{r}
+df.close<-data.frame(cbind(BTC[,1],BTC[,2],BNB[,2],ETH[,2],USDC[,2],USDT[,2]))
 colnames(df.close)<-c("Date","BTC","BNB","ETH","USDC","USDT")
 head(df.close)
 ```
@@ -11,3 +19,92 @@ df.close1<- gather(df.close[,2:6], cryptocurrency, price)
 df.close1$price<-as.numeric(df.close1$price)
 head(df.close1)
 ```
+```{r}
+# volatility
+BTC$Return<-NA
+for (i in 2:nrow(BTC)){
+  BTC$Return[i]<-(BTC$price[i]/BTC$price[i-1])-1
+}
+
+BTC$Vol<-NA
+for (i in 16:nrow(BTC)){
+  BTC$Vol[i]<-sd(c(BTC$Return[i-14],BTC$Return[i-13],BTC$Return[i-12],
+                   BTC$Return[i-11],BTC$Return[i-10],BTC$Return[i-9],
+                   BTC$Return[i-8],BTC$Return[i-7],BTC$Return[i-6],
+                   BTC$Return[i-5],BTC$Return[i-4],BTC$Return[i-3],
+                   BTC$Return[i-2],BTC$Return[i-1],BTC$Return[i]))*sqrt(365)
+}
+
+```
+```{r}
+BNB$Return<-NA
+for (i in 2:nrow(BNB)){
+  BNB$Return[i]<-(BNB$price[i]/BNB$price[i-1])-1
+}
+
+BNB$Vol<-NA
+for (i in 16:nrow(BNB)){
+  BNB$Vol[i]<-sd(c(BNB$Return[i-14],BNB$Return[i-13],BNB$Return[i-12],
+                   BNB$Return[i-11],BNB$Return[i-10],BNB$Return[i-9],
+                   BNB$Return[i-8],BNB$Return[i-7],BNB$Return[i-6],
+                   BNB$Return[i-5],BNB$Return[i-4],BNB$Return[i-3],
+                   BNB$Return[i-2],BNB$Return[i-1],BNB$Return[i]))*sqrt(365)
+}
+```
+```{r}
+ETH$Return<-NA
+for (i in 2:nrow(ETH)){
+  ETH$Return[i]<-(ETH$price[i]/ETH$price[i-1])-1
+}
+
+ETH$Vol<-NA
+for (i in 16:nrow(ETH)){
+  ETH$Vol[i]<-sd(c(ETH$Return[i-14],ETH$Return[i-13],ETH$Return[i-12],
+                   ETH$Return[i-11],ETH$Return[i-10],ETH$Return[i-9],
+                   ETH$Return[i-8],ETH$Return[i-7],ETH$Return[i-6],
+                   ETH$Return[i-5],ETH$Return[i-4],ETH$Return[i-3],
+                   ETH$Return[i-2],ETH$Return[i-1],ETH$Return[i]))*sqrt(365)
+}
+```
+```{r}
+USDC$Return<-NA
+for (i in 2:nrow(USDC)){
+  USDC$Return[i]<-(USDC$price[i]/USDC$price[i-1])-1
+}
+
+USDC$Vol<-NA
+for (i in 16:nrow(USDC)){
+  USDC$Vol[i]<-sd(c(USDC$Return[i-14],USDC$Return[i-13],USDC$Return[i-12],
+                   USDC$Return[i-11],USDC$Return[i-10],USDC$Return[i-9],
+                   USDC$Return[i-8],USDC$Return[i-7],USDC$Return[i-6],
+                   USDC$Return[i-5],USDC$Return[i-4],USDC$Return[i-3],
+                   USDC$Return[i-2],USDC$Return[i-1],USDC$Return[i]))*sqrt(365)
+}
+```
+```{r}
+USDT$Return<-NA
+for (i in 2:nrow(USDT)){
+  USDT$Return[i]<-(USDT$price[i]/USDT$price[i-1])-1
+}
+
+USDT$Vol<-NA
+for (i in 16:nrow(USDT)){
+  USDT$Vol[i]<-sd(c(USDT$Return[i-14],USDT$Return[i-13],USDT$Return[i-12],
+                   USDT$Return[i-11],USDT$Return[i-10],USDT$Return[i-9],
+                   USDT$Return[i-8],USDT$Return[i-7],USDT$Return[i-6],
+                   USDT$Return[i-5],USDT$Return[i-4],USDT$Return[i-3],
+                   USDT$Return[i-2],USDT$Return[i-1],USDT$Return[i]))*sqrt(365)
+}
+```
+```{r}
+df.close1$Date<-rep(df.close$Date,5)
+df.cryto<-
+  cbind(df.close1,
+        market_cap=c(BTC$market_cap,BNB$market_cap,ETH$market_cap,
+                     USDC$market_cap,USDT$market_cap),
+        return=c(BTC$Return,BNB$Return,ETH$Return,USDC$Return,USDT$Return),
+        volatility=c(BTC$Vol,BNB$Vol,ETH$Vol,USDC$Vol,USDT$Vol))
+
+```
+
+
