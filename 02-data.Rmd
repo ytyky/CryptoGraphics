@@ -1,6 +1,6 @@
 # Data sources
 
-## COntribution
+## Contribution
 
 Tianyu is responsible to determine the cryptocurencies we are focus on. Juntian downloads corresponding cryptocurrencies' datasets and determines the scale of the data.
 
