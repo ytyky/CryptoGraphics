@@ -1,2 +1,3 @@
 # Conclusion
 
+After series of analysis on top cryptocurrencies, we know that the trading market of cryptos are cooling down compare with last year. We identified there are mainly 2 groups of cryptos, one group is stable coins linked to fiat currencies and they have less volatility and price per coin is close to 1 unit of the currency they linked to. Another group is those famous cryptos that does not rely on real money, and they have high volatility. Although we observed a decreasing trend in price and returns from top 3 cryptos, we find volume of 2 stable coins increase drastically, indicating the crypto world is still expanding.
