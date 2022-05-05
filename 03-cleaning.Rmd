@@ -2,7 +2,7 @@
 
 ## Select Data
 
-The original data includes the records which is more than one year, so we firstly choose the data between 2021-04-29 to 2022-04-30.
+The original data includes the records which is more than one year, so we firstly choose the data between end of April last year to the beginning of May 2022.
 
 ```{r}
 BTC<-BTC[(nrow(BTC)-370):(nrow(BTC)-4),]
@@ -33,7 +33,7 @@ head(df.close1)
 ## Calculate the Return and Volatility
 
 Firstly, we calculate the return of each date by the formula: (final price/ initial price)-1.  
-Then we calculate the 15 days volatility of each cryto by   calculating the stand deviation of 15 days return, and multiply square root of 356. (For stocks, the volatility is stand deviation multiply square root of 250, but the cryptocurrency can be traded every day, so we choose square root of 356 )
+Then we calculate the 15 days volatility of each crypto by   calculating the stand deviation of 15 days return, and multiply square root of 365. (For stocks, the volatility is stand deviation multiply square root of 250, but the cryptocurrency can be traded every day, so we choose square root of 365 )
 
 ```{r}
 # volatility
@@ -128,6 +128,9 @@ df.crypto<-
         volume=c(BTC$total_volume,BNB$total_volume,ETH$total_volume,
                      USDC$total_volume,USDT$total_volume))
 df.crypto$Date<-as.Date(df.crypto$Date)
+df.crypto$year <- strftime(df.crypto$Date, "%Y")    # Create year column
+df.crypto$month <- strftime(df.crypto$Date, "%m")
+head(df.crypto)
 ```
 
 
