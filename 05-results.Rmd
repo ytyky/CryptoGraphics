@@ -1,4 +1,5 @@
 # Results
+
 ```{r}
 ggplot(df.close1, aes(price)) + 
   geom_boxplot() + coord_flip() + 
@@ -10,4 +11,28 @@ ggplot(df.close1, aes(price)) +
 ## plot matrix for price
 plot(df.close[,2:6],pch=20, cex=0.1)
 ```
+
+```{r}
+## plot volatility by crypto
+ggplot(df.crypto, aes(x=Date,y=volatility))+
+  geom_line()+
+  facet_wrap(~cryptocurrency,scales = "free")
+
+
+```
+
+```{r}
+## plot volatility vs market capitalization
+ggplot(df.crypto, aes(x=market_cap,y=volatility))+
+  geom_point(pch=5, cex=0.2)+
+  facet_wrap(~cryptocurrency, scales = "free")
+```
+```{r}
+ggplot(rbind(df.crypto[df.crypto$cryptocurrency=="USDC",],
+             df.crypto[df.crypto$cryptocurrency=="USDT",]), 
+       aes(Date, volume)) + geom_col()+
+  facet_wrap(~cryptocurrency,scales="free")
+```
+
+
 

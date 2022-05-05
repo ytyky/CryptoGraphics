@@ -5,13 +5,13 @@ library(redav)
 ```
 
 ```{r}
-plot_missing(df.cryto)
+plot_missing(df.crpyto)
 ```
 
 Observed that volatility and return contains missing values. Take a look into number of missing value in columns we found:
 
 ```{r}
-colSums(is.na(df.cryto)) %>%
+colSums(is.na(df.crypto)) %>%
   sort(decreasing = TRUE)
 ```
 
