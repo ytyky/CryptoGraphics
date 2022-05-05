@@ -119,15 +119,15 @@ Finally, we combine the volatility, return, and market capitalization and volume
 
 ```{r}
 df.close1$Date<-rep(df.close$Date,5)
-df.crpyto<-
+df.crypto<-
   cbind(df.close1,
         market_cap=c(BTC$market_cap,BNB$market_cap,ETH$market_cap,
                      USDC$market_cap,USDT$market_cap),
         return=c(BTC$Return,BNB$Return,ETH$Return,USDC$Return,USDT$Return),
         volatility=c(BTC$Vol,BNB$Vol,ETH$Vol,USDC$Vol,USDT$Vol),
-        volumn=c(BTC$total_volume,BNB$total_volume,ETH$total_volume,
+        volume=c(BTC$total_volume,BNB$total_volume,ETH$total_volume,
                      USDC$total_volume,USDT$total_volume))
-df.crpyto$Date<-as.Date(df.crpyto$Date)
+df.crypto$Date<-as.Date(df.crypto$Date)
 ```
 
 
