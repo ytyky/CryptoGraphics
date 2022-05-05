@@ -5,8 +5,16 @@ library(redav)
 ```
 
 ```{r}
-plot_missing(df.close)
+plot_missing(df.cryto)
 ```
 
-Observed that there is no missing value.
+Observed that volatility and return contains missing values. Take a look into number of missing value in columns we found:
+
+```{r}
+colSums(is.na(df.cryto)) %>%
+  sort(decreasing = TRUE)
+```
+
+
+Calculating volatility requires 15 days data beforehand and return need 1 day  data beforehand. Thus each cryptocurrency return variable missed one rows and volatility missed 15 rows of data. In total we have 75 volatility values and 5 return values missing.
 
