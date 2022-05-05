@@ -1,3 +1,68 @@
 # Interactive component
 
+```{r}
+library(plotly)
+```
+
+## Add Buttons
+
+We put the volatility of USDC and USDT into one plot because the volatility of the two cryptos have similar trends. In this interactive plot, we create three buttons that includes three options: showing the volatility of USDC, showing the volatility of USDT, and showing both cryptos. 
+
+```{r}
+##set the dataframe
+df_USDC<-df.crypto[df.crypto$cryptocurrency =="USDC",]
+df_USDT<-df.crypto[df.crypto$cryptocurrency =="USDT",]
+df_J_I<-data.frame(cbind(df_USDT$Date,df_USDT$volatility,
+                         df_USDC$volatility))
+colnames(df_J_I) <- c("Date","USDT_vol","USDC_vol")
+fig_J_I <- plot_ly(df_J_I, type = "scatter" , mode = "lines")
+fig_J_I<- fig_J_I %>% add_lines(x=~Date, y=~USDT_vol, name="USDT",
+            line=list(color="red")) 
+fig_J_I<- fig_J_I%>% add_lines(x=~Date, y=~USDC_vol, name="USDC",
+            line=list(color="blue")) 
+
+update_trace <- list(list(active = -1,type= 'buttons',
+    buttons = list(list(label = "USDT",
+                        method = "update",
+                        args = list(
+                          list(visible = c(FALSE, TRUE)),
+                          list(title = "USDT_vol",
+                               annotations = 
+                                 list(c(),df_J_I$USDT_vol)))),
+                   list(label = "USDC",method = "update",
+                        args = list(
+                          list(visible = c(TRUE, FALSE)),
+                          list(title = "USDC_vol",
+                               annotations = 
+                                 list(df_J_I$USDC_vol, c())))),
+                   list(label = "Both",method = "update",
+                        args = list(list(visible = c(TRUE, TRUE)),
+                                    list(title = "Volatility by time",
+                                         annotations = 
+                                           list(df_J_I$USDT_vol,
+                                                df_J_I$USDC_vol)))))))
+fig_J_I_update <- fig_J_I %>% layout(title = "Volatility", showlegend=FALSE,
+                                     xaxis=list(title="Date"),
+                                     yaxis=list(title="Volatility"),
+                                     updatemenus=update_trace)
+
+fig_J_I_update
+```
+
+## Range Slider
+
+In this interactive plot, we add the range slider, so if people want to observe the plot of volatility in a specific range, the can move the buttons which are in the two side of the range slider.  
+
+```{r}
+fig_J_I_range<-fig_J_I%>% 
+  layout(xaxis = list(rangeslider = list(visible = T)))
+fig_J_I_range
+```
+
+
+
+
+
+
+
 
