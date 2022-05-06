@@ -52,6 +52,13 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 
 
 
@@ -89,7 +96,7 @@
 <li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#select-data"><i class="fa fa-check"></i><b>3.1</b> Select Data</a></li>
 <li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#combine-the-data"><i class="fa fa-check"></i><b>3.2</b> Combine the Data</a></li>
 <li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#calculate-the-return-and-volatility"><i class="fa fa-check"></i><b>3.3</b> Calculate the Return and Volatility</a></li>
-<li class="chapter" data-level="3.4" data-path="data-transformation.html"><a href="data-transformation.html#combine-all-the-value-into-one-table"><i class="fa fa-check"></i><b>3.4</b> Combine All the Value into One table</a></li>
+<li class="chapter" data-level="3.4" data-path="data-transformation.html"><a href="data-transformation.html#combine-all-the-value-into-one-table"><i class="fa fa-check"></i><b>3.4</b> Combine All the Value into One Table</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
@@ -100,7 +107,10 @@
 <li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#dive-into-stable-coin"><i class="fa fa-check"></i><b>5.4</b> Dive into Stable Coin</a></li>
 <li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#crypto-as-an-investment"><i class="fa fa-check"></i><b>5.5</b> Crypto as an Investment</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="interactive-component.html"><a href="interactive-component.html#add-buttons-and-range-slider"><i class="fa fa-check"></i><b>6.1</b> Add Buttons and Range Slider</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -143,24 +153,26 @@
 <p>The crypto market move fast with uncertainty, and we tried to compare the trading volatility over all cryptos past year</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>Observed that all top cryptos are decresing volatility through time. This means that the market is becoming stable and rational. Noticed that BNB has the highest volatility at the begining of our records. This is a relatively new cryptocurrency compared with BTC and ETH. We sepeculate that people are passion about new crypto when it first published. The stable coin USDC, USDT are more stable than last year and thus they probably become mature financial product (since they are suppose to fix their price to 1 usd).</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<p>Then we plot a scatter plot between volatility and market_cap, facet by different cryptocurrenies. The volatility is high when marketcap is high for all cryptos. This means price is extremely unstable when marketcap is high.</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>Then we plot a scatter plot between volatility and market_cap, facet by different cryptocurrenies (we calculate a monthly average on volatility and marketcap over 1 year window, so there are 12 data points in each facet graph). The volatility is high when marketcap is high for all cryptos. This means price is extremely unstable when marketcap is high.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p>Another indicator of the crypto market is cooling down is that the dot plot between date and volume. We see a decreasing trend in trading volume of BTC, ETH and BNB over a year. This implies that less amount of coins are trading in the market.</p>
 <p>The other group of our interests, USDC and USDT, have continuous trading volumes, indicate that people treat these two type of coins as a tool to exchange their fiat currency in and out of the blockchian industry for varied purposes. The trading market is cooling down but people joined in the crypto industry did not simply leave.</p>
 </div>
 <div id="dive-into-stable-coin" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Dive into Stable Coin<a href="results.html#dive-into-stable-coin" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
-<p>The volume of USDC are smaller than USDT during the one year window we observed. They are similar tools that link to US dollar but it seems like USDT is popular than USDC. This might due to the fact that USDT launched eariler than USDC. USDT has a suspicious volume spick in November 2021, after browsing news and external information (other market data source) we suspect this is an error record.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>The volume of USDC are smaller than USDT during the one year window we observed. They are similar tools that link to US dollar but it seems like USDT is popular than USDC. This might due to the fact that USDT launched eariler than USDC. USDT has a suspicious volume spike in November 2021, after browsing news and external information (other market data source) we suspect this is an error record.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p>We can stack two stable coins’ market cap together to get a general sense of how many US dollar go virtual – around 150 billion USD are now converted to stable coins. A 100% increase in amount of dollors are now tokens on the blockchain.</p>
 </div>
 <div id="crypto-as-an-investment" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> Crypto as an Investment<a href="results.html#crypto-as-an-investment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The top 3 cryptocurrencies (in market cap), BTC, BNB and ETH are mostly trading as a financial products instead of currencies. People invest in cryptos and expect returns in it. We can visualize the monthly returns of these cryptos to have a sense about what it looks like</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <p>The monthly return are similar. From the graph we observed that the return rate vary a lot, so investing in crypto might be risky</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>Unlike stable coin, the market cap of top 3 cryptos goes up and down just like their price. The mining process is slow since with the increase of time, more and more computational power requires to mine a coin. Thus the total market capital is mainly decided by price in the trading market.</p>
 
 </div>
 </div>
@@ -224,6 +236,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

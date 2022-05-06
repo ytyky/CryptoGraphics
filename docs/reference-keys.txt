@@ -19,4 +19,5 @@ how-hot-is-the-market
 dive-into-stable-coin
 crypto-as-an-investment
 interactive-component
+add-buttons-and-range-slider
 conclusion
