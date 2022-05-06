@@ -14,26 +14,52 @@ USDT<-USDT[(nrow(USDT)-370):(nrow(USDT)-4),]
 
 ## Combine the Data
 
-we will combine the price of each cryptocurrency into one table df.close
+we combine the price of each cryptocurrency into one table, df.close
 
 ```{r}
 df.close<-data.frame(cbind(BTC[,1],BTC[,2],BNB[,2],ETH[,2],USDC[,2],USDT[,2]))
 colnames(df.close)<-c("Date","BTC","BNB","ETH","USDC","USDT")
-head(df.close)
 ```
 
-Here, we transform the table df.close into the new table df.close1 which will be helpful for plotting. 
+
+| Date | BTC | BNB | ETH | USDC | USDT | Price |
+| :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+| record |
+
+where BTC is Bitcoin, BNB is Binance Coin, ETH
+
+* Date: date of the crypto record
+* BTC: price of Bitcoin
+* BNB: price of Binance Coin
+* ETH: price of Ethereum
+* USDC: price of USD Coin
+* USDT: price of USD Tether
+
+(all price are in USD)
+
+This table can help us quickly find price of all 5 cryptos we selected given date information.
+
+Then we create a comprehensive tidy data table include all financial information, df.crypto:
+
+| date | cryptocurrency | price | volume | market_cap |
+| :----: | :----: | :----: | :----: | :----: |
+| record |
+
 
 ```{r}
 df.close1<- gather(df.close[,2:6], cryptocurrency, price)
 df.close1$price<-as.numeric(df.close1$price)
-head(df.close1)
 ```
 
 ## Calculate the Return and Volatility
 
-Firstly, we calculate the return of each date by the formula: (final price/ initial price)-1.  
-Then we calculate the 15 days volatility of each crypto by   calculating the stand deviation of 15 days return, and multiply square root of 365. (For stocks, the volatility is stand deviation multiply square root of 250, but the cryptocurrency can be traded every day, so we choose square root of 365 )
+Firstly, we calculate the return of each date by the formula: 
+$$\frac{final\: pric e - initial\: price}{initial\: price}$$  
+Then we calculate the 15 days volatility of each crypto by calculating the stand deviation of 15 days return, and multiply square root of 365.
+
+$$sd(15 \: days \: return) \cdot \sqrt{365}$$
+
+(For stocks, the volatility is stand deviation multiply square root of 250, but the cryptocurrency can be traded every day, so we choose square root of 365 )
 
 ```{r}
 # volatility
@@ -113,9 +139,9 @@ for (i in 16:nrow(USDT)){
 }
 ```
 
-## Combine All the Value into One table
+## Combine All the Value into One Table
 
-Finally, we combine the volatility, return, and market capitalization and volume with the df.close1, creating the final table df.crpyto
+Finally, we add the volatility, return, into df.crpyto, plus month and year column seperated from date in case we want to group data. The fianl format of our table df.crypto:
 
 ```{r}
 df.close1$Date<-rep(df.close$Date,5)
@@ -132,5 +158,3 @@ df.crypto$year <- strftime(df.crypto$Date, "%Y")    # Create year column
 df.crypto$month <- strftime(df.crypto$Date, "%m")
 head(df.crypto)
 ```
-
-
