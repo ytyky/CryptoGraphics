@@ -23,7 +23,7 @@
 <meta name="author" content="Tianyu Yao, Juntian Zhang" />
 
 
-<meta name="date" content="2022-05-03" />
+<meta name="date" content="2022-05-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,13 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 
 
 
@@ -69,13 +76,13 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">SHORT TITLE HERE</a></li>
+<li><a href="./">Crypto</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#contribution"><i class="fa fa-check"></i><b>2.1</b> COntribution</a></li>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#contribution"><i class="fa fa-check"></i><b>2.1</b> Contribution</a></li>
 <li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#data-collection"><i class="fa fa-check"></i><b>2.2</b> Data Collection</a></li>
 <li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#dataset-information"><i class="fa fa-check"></i><b>2.3</b> Dataset Information</a>
 <ul>
@@ -84,10 +91,26 @@
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="data-sources.html"><a href="data-sources.html#issue"><i class="fa fa-check"></i><b>2.4</b> Issue</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#select-data"><i class="fa fa-check"></i><b>3.1</b> Select Data</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#combine-the-data"><i class="fa fa-check"></i><b>3.2</b> Combine the Data</a></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#calculate-the-return-and-volatility"><i class="fa fa-check"></i><b>3.3</b> Calculate the Return and Volatility</a></li>
+<li class="chapter" data-level="3.4" data-path="data-transformation.html"><a href="data-transformation.html#combine-all-the-value-into-one-table"><i class="fa fa-check"></i><b>3.4</b> Combine All the Value into One Table</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#correlation"><i class="fa fa-check"></i><b>5.2</b> Correlation</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#how-hot-is-the-market"><i class="fa fa-check"></i><b>5.3</b> How hot is the market?</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#dive-into-stable-coin"><i class="fa fa-check"></i><b>5.4</b> Dive into Stable Coin</a></li>
+<li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#crypto-as-an-investment"><i class="fa fa-check"></i><b>5.5</b> Crypto as an Investment</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="interactive-component.html"><a href="interactive-component.html#add-buttons-and-range-slider"><i class="fa fa-check"></i><b>6.1</b> Add Buttons and Range Slider</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -110,21 +133,96 @@
             <section class="normal" id="section-">
 <div id="data-transformation" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Data transformation<a href="data-transformation.html#data-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<pre><code>##         Date          BTC        BNB         ETH     USDC     USDT
-## 1 2021-04-29 53555.109375 599.706543 2756.876953 1.000144 0.999966
-## 2 2021-04-30 57750.175781 624.080566 2773.207031 0.999824 1.000009
-## 3 2021-05-01 57828.050781 619.347229 2945.892822 1.000154 1.000111
-## 4 2021-05-02 56631.078125 622.101013 2952.056152 0.999949 1.000132
-## 5 2021-05-03 57200.292969 675.684082 3431.086182 1.000104 1.000165
-## 6 2021-05-04 53333.539063 611.200317 3253.629395 1.000195 0.999951</code></pre>
-<pre><code>##   cryptocurrency    price
-## 1            BTC 53555.11
-## 2            BTC 57750.18
-## 3            BTC 57828.05
-## 4            BTC 56631.08
-## 5            BTC 57200.29
-## 6            BTC 53333.54</code></pre>
+<div id="select-data" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Select Data<a href="data-transformation.html#select-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The original data includes the records which is more than one year, so we firstly choose the data between the end of April last year to the beginning of May 2022.</p>
+</div>
+<div id="combine-the-data" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Combine the Data<a href="data-transformation.html#combine-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>we combine the price of each cryptocurrency into one table, df.close:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Date</th>
+<th align="center">BTC</th>
+<th align="center">BNB</th>
+<th align="center">ETH</th>
+<th align="center">USDC</th>
+<th align="center">USDT</th>
+<th align="center">Price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">record</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Date: date of the crypto record</li>
+<li>BTC: price of Bitcoin</li>
+<li>BNB: price of Binance Coin</li>
+<li>ETH: price of Ethereum</li>
+<li>USDC: price of USD Coin</li>
+<li>USDT: price of USD Tether</li>
+</ul>
+<p>(all price are in USD)</p>
+<p>This table can help us quickly find price of all 5 cryptos we selected given date information.</p>
+<p>Then we create a comprehensive tidy data table include all financial information, df.crypto:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">date</th>
+<th align="center">cryptocurrency</th>
+<th align="center">price</th>
+<th align="center">volume</th>
+<th align="center">market_cap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">record</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="calculate-the-return-and-volatility" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Calculate the Return and Volatility<a href="data-transformation.html#calculate-the-return-and-volatility" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Firstly, we calculate the return of each date by the formula:
+<span class="math display">\[\frac{final\: pric e - initial\: price}{initial\: price}\]</span><br />
+Then we calculate the 15 days volatility of each crypto by calculating the stand deviation of 15 days return, and multiply square root of 365.</p>
+<p><span class="math display">\[sd(15 \: days \: return) \cdot \sqrt{365}\]</span></p>
+<p>(For stocks, the volatility is stand deviation multiply square root of 250, but the cryptocurrency can be traded every day, so we choose square root of 365)</p>
+</div>
+<div id="combine-all-the-value-into-one-table" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Combine All the Value into One Table<a href="data-transformation.html#combine-all-the-value-into-one-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finally, we add the volatility, return, into df.crpyto, plus month and year column seperated from date in case we want to group data. The fianl format of our table df.crypto:</p>
+<pre><code>##   cryptocurrency    price       Date   market_cap        return volatility
+## 1            BTC 54810.61 2021-04-29 1.024626e+12            NA         NA
+## 2            BTC 53596.70 2021-04-30 1.001974e+12 -0.0221473496         NA
+## 3            BTC 57828.51 2021-05-01 1.082722e+12  0.0789564931         NA
+## 4            BTC 57812.97 2021-05-02 1.080898e+12 -0.0002687715         NA
+## 5            BTC 56600.75 2021-05-03 1.057850e+12 -0.0209680266         NA
+## 6            BTC 57200.30 2021-05-04 1.069571e+12  0.0105927052         NA
+##        volume year month
+## 1 48072930663 2021    04
+## 2 46958036373 2021    04
+## 3 53879045974 2021    05
+## 4 43967070046 2021    05
+## 5 39072664394 2021    05
+## 6 54132470274 2021    05</code></pre>
 
+</div>
 </div>
             </section>
 
@@ -186,6 +284,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

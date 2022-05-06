@@ -13,6 +13,8 @@ Cryptocurrency market is trending and we are interested in comparing and contras
 
 2.how to visualize “hotness” of a cryptocurrency?
 
-3.market cap of major cryptocurrencies, compare with each other and figure out the relationships between volatility and the market cap.
+3.is there any common or different trends between cryptocurrencies? Can we classfy cryptos by their financial properties?
+
+In order to answer these questions, we collected crypto market data from different sources, processed, aggregated and visualized them using proper tools. We explored and developed few interests insights based on graphs
 
 

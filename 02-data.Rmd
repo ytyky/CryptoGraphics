@@ -12,6 +12,8 @@ We use [coinmarketcap](https://coinmarketcap.com) api to verified top 5 cryptocu
 library(tidyverse)
 library(ggplot2)
 library(coinmarketcapr)
+library(zoo)
+library(scales)
 ```
 
 ```{r}

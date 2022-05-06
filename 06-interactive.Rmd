@@ -6,8 +6,8 @@ library(plotly)
 
 ## Add Buttons and Range Slider
 
-We put the volatility of USDC and USDT into one plot because the volatility of the two cryptos have similar trends. In this interactive plot, we create three buttons that includes three options: showing the volatility of USDC, showing the volatility of USDT, and showing both cryptos. 
-In this interactive plot, we also add the range slider, so if people want to observe the plot of volatility in a specific range, the can move the buttons which are in the two side of the range slider.  
+We put the volatility of USDC and USDT into one plot because the volatility of the two cryptos have similar trends. In this interactive plot, we create three buttons that include three options: showing the volatility of USDC, showing the volatility of USDT, and showing both cryptos. 
+In this interactive plot, we also add the range slider, so if people want to observe the plot of volatility in a specific range, they can move the buttons which are in the two sides of the range slider. With the two design, people can easily compare the two cryptos in detail.  
 
 
 ```{r}

@@ -1,5 +1,22 @@
 # Results
 
+## Overview
+
+The price trend of top 5 cryptos are drawed below. As addressed before, the price of different cryptocurriencies vary a lot and hence we plot them separately by facet
+
+```{r}
+ggplot(data = df.close1, aes(x = as.Date(Date), y = price)) + 
+  geom_line() +
+  facet_wrap(~cryptocurrency,scales = "free") + 
+  xlab("date") +
+  theme_grey(16) +
+  theme(axis.text.x = element_text(size=10, angle = 90))
+```
+
+We can obtain a general idea of the trend over a year. the price of BTC, ETH and BNB are high at end of April last year, then it bounce up and down, and for the last 5 months (start from the end of 2021) they have a decreasing trend. USDC and USDT have price around 1 dollar since they are stable coin. By nature stable coin are expected to have same value as fiat currency it targets to. From the line plot above we saw that the price range of USDC and  USDT is centered around 1 (USD), but still have volatility.
+
+We then examine the data range by boxplot, by facet
+
 ```{r}
 ggplot(df.close1, aes(price)) + 
   geom_boxplot() + coord_flip() + 
@@ -7,32 +24,137 @@ ggplot(df.close1, aes(price)) +
   theme_grey(16)
 ```
 
+Observed that the Bitcoin is undoubtly a giant in the current market. ETH and BNB are also expensive. The median price per ETH past year is around 3000. The median price per BNB past year is around 400. The rest two kinds of coin, USDC and USDT are waving around 1 dollar, and this is due to the fact that they are "stable coin" that linked to US dollar. The range of USDC and USDT are related small compared to other top cryptos, but they have do a lot of outliers in themselves. 
+
+## Correlation
+
+We are also interested in the correlation between each cryptocurrency, hence we draw a correlation map to visulize the relationship
+
 ```{r}
 ## plot matrix for price
 plot(df.close[,2:6],pch=20, cex=0.1)
 ```
 
+Observed that the top cryptos in the market can divided into 2 groups. BTC, BNB and ETH have strong positive correlation, their price in general go up and down together. USDC and USDT have weak positive correlation, since they have target price at 1 USD.
+
+## How hot is the market?
+
+The crypto market move fast with uncertainty, and we tried to compare the trading volatility over all cryptos past year
+
 ```{r}
 ## plot volatility by crypto
 ggplot(df.crypto, aes(x=Date,y=volatility))+
   geom_line()+
-  facet_wrap(~cryptocurrency,scales = "free")
+  facet_wrap(~cryptocurrency,scales = "free") + 
+  theme_grey(16) +
+  theme(axis.text.x = element_text(size=10, angle = 90))
+```
 
+Observed that all top cryptos are decresing volatility through time. This means that the market is becoming stable and rational. Noticed that BNB has the highest volatility at the begining of our records. This is a relatively new cryptocurrency compared with BTC and ETH. We sepeculate that people are passion about new crypto when it first published. The stable coin USDC, USDT are more stable than last year and thus they probably become mature financial product (since they are suppose to fix their price to 1 usd).
 
+```{r}
+monthly_volatility <- aggregate(cbind(volatility, market_cap) ~ month + year + cryptocurrency,
+                        df.crypto,
+                        FUN = mean)
+monthly_volatility <- monthly_volatility %>% filter((month != "04") | (year != "2021"))
+monthly_volatility$Date <- as.yearmon(paste(monthly_volatility$year, monthly_volatility$month), "%Y %m")
 ```
 
 ```{r}
 ## plot volatility vs market capitalization
-ggplot(df.crypto, aes(x=market_cap,y=volatility))+
+ggplot(monthly_volatility, aes(x=market_cap,y=volatility))+
   geom_point(pch=5, cex=0.2)+
-  facet_wrap(~cryptocurrency, scales = "free")
+  facet_wrap(~cryptocurrency, scales = "free") + 
+  scale_x_continuous(labels = unit_format(unit = "B", scale = 1e-9)) + 
+  xlab("marketcap in billions") + 
+  theme_grey(16) +
+  theme(axis.text.x = element_text(size=10, angle = 90))
 ```
+
+Then we plot a scatter plot between volatility and market_cap, facet by different cryptocurrenies (we calculate a monthly average on volatility and marketcap over 1 year window, so there are 12 data points in each facet graph). The volatility is high when marketcap is high for all cryptos. This means price is extremely unstable when marketcap is high.
+
+```{r}
+ggplot(df.crypto, aes(x=Date,y=volume))+
+  geom_line(pch=5, cex=0.2)+
+  facet_wrap(~cryptocurrency, scales = "free_y") + 
+  scale_y_continuous(labels = unit_format(unit = "B", scale = 1e-9)) + 
+  ylab("volume in billions") +
+  xlab("date") + 
+  theme_grey(16) +
+  theme(axis.text.x = element_text(size=10, angle = 90))
+```
+
+Another indicator of the crypto market is cooling down is that the dot plot between date and volume. We see a decreasing trend in trading volume of BTC, ETH and BNB over a year. This implies that less amount of coins are trading in the market. 
+
+The other group of our interests, USDC and USDT, have continuous trading volumes, indicate that people treat these two type of coins as a tool to exchange their fiat currency in and out of the blockchian industry for varied purposes. The trading market is cooling down but people joined in the crypto  industry did not simply leave. 
+
+## Dive into Stable Coin
+
 ```{r}
 ggplot(rbind(df.crypto[df.crypto$cryptocurrency=="USDC",],
              df.crypto[df.crypto$cryptocurrency=="USDT",]), 
        aes(Date, volume)) + geom_col()+
-  facet_wrap(~cryptocurrency,scales="free")
+  facet_wrap(~cryptocurrency,scales="free") +
+  scale_y_continuous(labels = unit_format(unit = "B", scale = 1e-9)) + 
+  xlab("date") +
+  ylab("volume in billions") +
+  theme_grey(16) +
+  theme(axis.text.x = element_text(size=10, angle = 90))
 ```
 
+The volume of USDC are smaller than USDT during the one year window we observed. They are similar tools that link to US dollar but it seems like USDT is popular than USDC. This might due to the fact that USDT launched eariler than USDC. USDT has a suspicious volume spike in November 2021, after browsing news and external information (other market data source) we suspect this is an error record.
 
+```{r}
+# check 11.3.2021 USDT volume data, and it seems wrong, confirmed with coinmarketcap data 65.772B
+#ggplot(data = df.crypto %>% filter(cryptocurrency == "USDT"), aes(x=Date, y=volume)) + geom_line()
+```
+
+```{r}
+ggplot(rbind(df.crypto[df.crypto$cryptocurrency=="USDC",],
+             df.crypto[df.crypto$cryptocurrency=="USDT",]), 
+       aes(fill=cryptocurrency, y=market_cap, x=Date)) + 
+  geom_bar(position="stack", stat="identity") +
+  scale_y_continuous(labels = unit_format(unit = "B", scale = 1e-9)) + 
+  ylab("marketcap in billions") + 
+  xlab("date") + 
+  theme_grey(16)
+```
+
+We can stack two stable coins' market cap together to get a general sense of how many US dollar go virtual -- around 150 billion USD are now converted to stable coins. A 100% increase in amount of dollors are now tokens on the blockchain.
+
+## Crypto as an Investment
+
+The top 3 cryptocurrencies (in market cap), BTC, BNB and ETH are mostly trading as a financial products instead of currencies. People invest in cryptos and expect returns in it. We can visualize the monthly returns of these cryptos to have a sense about what it looks like
+
+```{r}
+monthly_returns <- aggregate(return ~ month + year + cryptocurrency,
+                        df.crypto,
+                        FUN = sum)
+monthly_returns <- monthly_returns %>% filter((month != "04") | (year != "2021")) %>% filter(cryptocurrency != "USDC" & cryptocurrency != "USDT")
+monthly_returns$Date <- as.yearmon(paste(monthly_returns$year, monthly_returns$month), "%Y %m")
+```
+
+```{r}
+ggplot(monthly_returns, aes(x=Date,y=return, colour=cryptocurrency,group=cryptocurrency))+
+  geom_line() + 
+  xlab("date") + 
+  theme_grey(16) +
+  theme(axis.text.x = element_text(size=10, angle = 90))
+```
+
+The monthly return are similar. From the graph we observed that the return rate vary a lot, so investing in crypto might be risky
+
+```{r}
+ggplot(rbind(df.crypto[df.crypto$cryptocurrency=="BTC",],
+             df.crypto[df.crypto$cryptocurrency=="ETH",],
+             df.crypto[df.crypto$cryptocurrency=="BNB",]), 
+       aes(fill=cryptocurrency, y=market_cap, x=Date)) + 
+  geom_bar(position="stack", stat="identity") + 
+  scale_y_continuous(labels = unit_format(unit = "B", scale = 1e-9)) + 
+  ylab("marketcap in billions") +
+  xlab("date") + 
+  theme_grey(16)
+```
+
+Unlike stable coin, the market cap of top 3 cryptos goes up and down just like their price. The mining process is slow since with the increase of time, more and more computational power requires to mine a coin. Thus the total market capital is mainly decided by price in the trading market.
 

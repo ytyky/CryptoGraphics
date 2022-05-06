@@ -5,13 +5,19 @@ library(redav)
 ```
 
 ```{r}
-plot_missing(df.crpyto)
+missing_crypto_show_case <- df.crypto %>% 
+  rename(
+    date = Date,
+    crypto = cryptocurrency,
+    capital = market_cap
+    )
+plot_missing(missing_crypto_show_case)
 ```
 
 Observed that volatility and return contains missing values. Take a look into number of missing value in columns we found:
 
 ```{r}
-colSums(is.na(df.crypto)) %>%
+colSums(is.na(missing_crypto_show_case)) %>%
   sort(decreasing = TRUE)
 ```
 

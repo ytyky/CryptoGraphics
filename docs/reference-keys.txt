@@ -7,7 +7,17 @@ format
 column-details
 issue
 data-transformation
+select-data
+combine-the-data
+calculate-the-return-and-volatility
+combine-all-the-value-into-one-table
 missing-values
 results
+overview
+correlation
+how-hot-is-the-market
+dive-into-stable-coin
+crypto-as-an-investment
 interactive-component
+add-buttons-and-range-slider
 conclusion
