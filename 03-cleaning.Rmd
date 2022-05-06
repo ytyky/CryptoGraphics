@@ -2,7 +2,7 @@
 
 ## Select Data
 
-The original data includes the records which is more than one year, so we firstly choose the data between end of April last year to the beginning of May 2022.
+The original data includes the records which is more than one year, so we firstly choose the data between the end of April last year to the beginning of May 2022.
 
 ```{r}
 BTC<-BTC[(nrow(BTC)-370):(nrow(BTC)-4),]
@@ -14,7 +14,7 @@ USDT<-USDT[(nrow(USDT)-370):(nrow(USDT)-4),]
 
 ## Combine the Data
 
-we combine the price of each cryptocurrency into one table, df.close
+we combine the price of each cryptocurrency into one table, df.close:
 
 ```{r}
 df.close<-data.frame(cbind(BTC[,1],BTC[,2],BNB[,2],ETH[,2],USDC[,2],USDT[,2]))
@@ -26,7 +26,6 @@ colnames(df.close)<-c("Date","BTC","BNB","ETH","USDC","USDT")
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
 | record |
 
-where BTC is Bitcoin, BNB is Binance Coin, ETH
 
 * Date: date of the crypto record
 * BTC: price of Bitcoin
@@ -59,7 +58,7 @@ Then we calculate the 15 days volatility of each crypto by calculating the stand
 
 $$sd(15 \: days \: return) \cdot \sqrt{365}$$
 
-(For stocks, the volatility is stand deviation multiply square root of 250, but the cryptocurrency can be traded every day, so we choose square root of 365 )
+(For stocks, the volatility is stand deviation multiply square root of 250, but the cryptocurrency can be traded every day, so we choose square root of 365)
 
 ```{r}
 # volatility

@@ -135,11 +135,11 @@
 <h1><span class="header-section-number">Chapter 3</span> Data transformation<a href="data-transformation.html#data-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="select-data" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Select Data<a href="data-transformation.html#select-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The original data includes the records which is more than one year, so we firstly choose the data between end of April last year to the beginning of May 2022.</p>
+<p>The original data includes the records which is more than one year, so we firstly choose the data between the end of April last year to the beginning of May 2022.</p>
 </div>
 <div id="combine-the-data" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Combine the Data<a href="data-transformation.html#combine-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>we combine the price of each cryptocurrency into one table, df.close</p>
+<p>we combine the price of each cryptocurrency into one table, df.close:</p>
 <table>
 <thead>
 <tr class="header">
@@ -164,7 +164,6 @@
 </tr>
 </tbody>
 </table>
-<p>where BTC is Bitcoin, BNB is Binance Coin, ETH</p>
 <ul>
 <li>Date: date of the crypto record</li>
 <li>BTC: price of Bitcoin</li>
@@ -203,7 +202,7 @@
 <span class="math display">\[\frac{final\: pric e - initial\: price}{initial\: price}\]</span><br />
 Then we calculate the 15 days volatility of each crypto by calculating the stand deviation of 15 days return, and multiply square root of 365.</p>
 <p><span class="math display">\[sd(15 \: days \: return) \cdot \sqrt{365}\]</span></p>
-<p>(For stocks, the volatility is stand deviation multiply square root of 250, but the cryptocurrency can be traded every day, so we choose square root of 365 )</p>
+<p>(For stocks, the volatility is stand deviation multiply square root of 250, but the cryptocurrency can be traded every day, so we choose square root of 365)</p>
 </div>
 <div id="combine-all-the-value-into-one-table" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Combine All the Value into One Table<a href="data-transformation.html#combine-all-the-value-into-one-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>

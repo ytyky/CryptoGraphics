@@ -13,7 +13,7 @@ ggplot(data = df.close1, aes(x = as.Date(Date), y = price)) +
   theme(axis.text.x = element_text(size=10, angle = 90))
 ```
 
-We can obtain a general idea of the trend over a year. the price of BTC, ETH and BNB are high at end of April last year, then it bounce up and down, and for the last 4 months (start from 2022) they have a decreasing trend. USDC and USDT have price around 1 dollar since they are stable coin. By nature stable coin are expected to have same value as fiat currency it targets to. From the line plot above we saw that the price range of USDC and  USDT is centered around 1 (USD), but still have volatility.
+We can obtain a general idea of the trend over a year. the price of BTC, ETH and BNB are high at end of April last year, then it bounce up and down, and for the last 5 months (start from the end of 2021) they have a decreasing trend. USDC and USDT have price around 1 dollar since they are stable coin. By nature stable coin are expected to have same value as fiat currency it targets to. From the line plot above we saw that the price range of USDC and  USDT is centered around 1 (USD), but still have volatility.
 
 We then examine the data range by boxplot, by facet
 
