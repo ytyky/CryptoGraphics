@@ -93,7 +93,7 @@ ggplot(rbind(df.crypto[df.crypto$cryptocurrency=="USDC",],
   facet_wrap(~cryptocurrency,scales="free") +
   scale_y_continuous(labels = unit_format(unit = "B", scale = 1e-9)) + 
   xlab("date") +
-  ylab("volume in billions")
+  ylab("volume in billions") +
   theme_grey(16)
 ```
 
@@ -111,7 +111,7 @@ ggplot(rbind(df.crypto[df.crypto$cryptocurrency=="USDC",],
   geom_bar(position="stack", stat="identity") +
   scale_y_continuous(labels = unit_format(unit = "B", scale = 1e-9)) + 
   ylab("marketcap in billions") + 
-  xlab("date")
+  xlab("date") + 
   theme_grey(16)
 ```
 
